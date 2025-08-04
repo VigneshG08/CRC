@@ -6,11 +6,11 @@ DB_NAME = 'views.db'
 
 # Initialize DB
 def init_db():
-    conn = sqlite3.connect(DB_NAME)
+    conn = sqlite3.connect('views.db')
     cur = conn.cursor()
     cur.execute('CREATE TABLE IF NOT EXISTS views (count INTEGER)')
-    cur.execute('SELECT * FROM views')
-    if not cur.fetchone():
+    cur.execute('SELECT (*) FROM views')
+    if cur.fetchone()[0] == 0:
         cur.execute('INSERT INTO views (count) VALUES (0)')
     conn.commit()
     conn.close()
@@ -28,4 +28,5 @@ def count_views():
     return jsonify({'views': count})
 
     init_db()  # <--- call it at the module level
+
 
