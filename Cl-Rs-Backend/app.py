@@ -27,6 +27,5 @@ def count_views():
     conn.close()
     return jsonify({'views': count})
 
-if __name__ == '__main__':
-    init_db()
-    app.run(debug=True)
+    init_db()  # <--- call it at the module level
+
