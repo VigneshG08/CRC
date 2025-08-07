@@ -1,4 +1,6 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
+CORS(app)
 import sqlite3
 
 app = Flask(__name__)
@@ -28,5 +30,6 @@ def count_views():
     return jsonify({'views': count})
 
     init_db()  # <--- call it at the module level
+
 
 
